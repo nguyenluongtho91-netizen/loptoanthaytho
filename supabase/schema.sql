@@ -147,9 +147,9 @@ alter table teacher_classes enable row level security;
 
 -- All authenticated users can read
 create policy "auth read profiles"   on profiles   for select using (auth.role() = 'authenticated');
-create policy "auth read students"   on students   for select using (auth.role() = 'authenticated');
-create policy "auth read classes"    on classes    for select using (auth.role() = 'authenticated');
-create policy "auth read enrollments" on enrollments for select using (auth.role() = 'authenticated');
+create policy "auth read students"   on students   for select using (true);
+create policy "auth read classes"    on classes    for select using (true);
+create policy "auth read enrollments" on enrollments for select using (true);
 create policy "auth read attendance" on attendance  for select using (auth.role() = 'authenticated');
 create policy "auth read payments"   on payments    for select using (auth.role() = 'authenticated');
 create policy "auth read email_logs" on email_logs  for select using (auth.role() = 'authenticated');
