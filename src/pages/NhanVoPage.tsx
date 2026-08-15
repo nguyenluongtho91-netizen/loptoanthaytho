@@ -1445,7 +1445,7 @@ export default function NhanVoPage() {
                   value={schoolName}
                   onChange={(e) => setSchoolName(e.target.value)}
                   className="w-full rounded-xl border-slate-200 focus:border-teal-500 focus:ring-teal-500 py-3 px-4 text-base font-bold text-slate-800 placeholder-slate-400 bg-slate-50/50"
-                  placeholder="Ví dụ: LỚP TOÁN THẦY LĨNH..."
+                  placeholder="Ví dụ: LỚP TOÁN THẦY THỌ..."
                 />
               </div>
 

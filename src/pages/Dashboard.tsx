@@ -258,7 +258,7 @@ export default function Dashboard() {
     <div className="space-y-6">
       <div className="page-header">
         <div>
-          <h1 className="section-title">LỚP TOÁN THẦY LĨNH</h1>
+          <h1 className="section-title">LỚP TOÁN THẦY THỌ</h1>
           <p className="text-gray-500 text-sm mt-0.5">
             Xin chào, <strong>{profile?.name ?? profile?.email}</strong> 👋
           </p>

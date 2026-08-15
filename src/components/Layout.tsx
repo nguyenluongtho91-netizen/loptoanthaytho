@@ -25,7 +25,7 @@ export default function Layout() {
     {
       title: 'Quản lý Đào tạo',
       items: [
-        { path: '/',           icon: LayoutDashboard, label: 'LỚP TOÁN THẦY LĨNH' },
+        { path: '/',           icon: LayoutDashboard, label: 'LỚP TOÁN THẦY THỌ' },
         { path: '/classes',    icon: BookOpen,        label: 'Lớp học' },
         { path: '/students',   icon: Users,           label: 'Học sinh' },
         { path: '/attendance', icon: CalendarCheck,   label: 'Điểm danh' },
@@ -74,7 +74,7 @@ export default function Layout() {
         <div className="h-16 flex items-center gap-3 px-6 border-b border-teal-600/50 bg-teal-800/30 shrink-0">
           <GraduationCap className="w-8 h-8 text-teal-100" />
           <div>
-            <h1 className="font-bold text-sm leading-tight uppercase tracking-wider">LỚP TOÁN THẦY LĨNH</h1>
+            <h1 className="font-bold text-sm leading-tight uppercase tracking-wider">LỚP TOÁN THẦY THỌ</h1>
             <p className="text-[9px] text-teal-200 uppercase tracking-widest mt-0.5">Hệ thống Quản lý</p>
           </div>
         </div>

@@ -8,7 +8,7 @@ import toast from 'react-hot-toast'
 
 const BANK_ID      = import.meta.env.VITE_BANK_ID      || 'VBA'
 const BANK_ACCOUNT = import.meta.env.VITE_BANK_ACCOUNT || '3714235000320'
-const BANK_NAME    = import.meta.env.VITE_BANK_NAME    || import.meta.env.VITE_BANK_ACCOUNT_NAME || 'HKD DINH CONG LINH'
+const BANK_NAME    = import.meta.env.VITE_BANK_NAME    || import.meta.env.VITE_BANK_ACCOUNT_NAME || 'HO KINH DOANH NGUYEN LUONG THO'
 
 export default function StudentProgressPage() {
   const code = new URLSearchParams(window.location.search).get('code') || ''
@@ -16,7 +16,7 @@ export default function StudentProgressPage() {
   const [submissions, setSubmissions] = useState<any[]>([])
   const [courseProgress, setCourseProgress] = useState<any[]>([])
   const [tuitionNotifications, setTuitionNotifications] = useState<any[]>([])
-  const [centerName]   = useState(import.meta.env.VITE_CENTER_NAME || 'LỚP TOÁN THẦY LĨNH')
+  const [centerName]   = useState(import.meta.env.VITE_CENTER_NAME || 'LỚP TOÁN THẦY THỌ')
   const [loading, setLoading]   = useState(true)
   const [notFound, setNotFound] = useState(false)
   const [expandedSub, setExpandedSub] = useState<number | null>(null)
@@ -299,7 +299,7 @@ export default function StudentProgressPage() {
             {/* Lời nhắn gửi phụ huynh */}
             <div className="bg-gradient-to-br from-violet-50 via-purple-50/50 to-white border border-purple-100 rounded-xl p-4 space-y-2">
               <div className="flex items-center gap-1.5 text-purple-700 font-extrabold text-xs">
-                <span>💡 Lời nhắn gửi từ Thầy Lĩnh:</span>
+                <span>💡 Lời nhắn gửi từ Thầy Thọ:</span>
               </div>
               <p className="text-xs text-purple-950 leading-relaxed font-medium">
                 Kính gửi phụ huynh, sự đồng hành của gia đình là động lực lớn nhất của con. Trung tâm rất mong phụ huynh dành thêm thời gian kèm cặp, đôn đốc con học hành nhiều hơn, chăm chỉ tự giác làm bài tập đầy đủ để đạt kết quả học tập tốt nhất!
