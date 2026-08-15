@@ -6,8 +6,8 @@ import { CalendarCheck, Trophy, BookOpen, GraduationCap, AlertCircle, Clock, Che
 import MathText from '@/components/MathText'
 import toast from 'react-hot-toast'
 
-const BANK_ID      = import.meta.env.VITE_BANK_ID      || 'VBA'
-const BANK_ACCOUNT = import.meta.env.VITE_BANK_ACCOUNT || '3714235000320'
+const BANK_ID      = import.meta.env.VITE_BANK_ID      || 'VCB'
+const BANK_ACCOUNT = import.meta.env.VITE_BANK_ACCOUNT || '1070493932'
 const BANK_NAME    = import.meta.env.VITE_BANK_NAME    || import.meta.env.VITE_BANK_ACCOUNT_NAME || 'HO KINH DOANH NGUYEN LUONG THO'
 
 export default function StudentProgressPage() {

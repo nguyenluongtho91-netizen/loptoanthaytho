@@ -16,15 +16,15 @@ import { fmtVNDShort } from '@/lib/helpers'
 //    đồng thời hỗ trợ cả BANK_NAME và BANK_ACCOUNT_NAME
 const BANK_ID      = import.meta.env.VITE_BANK_ID
                   || (import.meta.env as any).BANK_ID
-                  || 'VBA'
+                  || 'VCB'
 const BANK_ACCOUNT = import.meta.env.VITE_BANK_ACCOUNT
                   || (import.meta.env as any).BANK_ACCOUNT
-                  || '3714235000320'
+                  || '1070493932'
 const BANK_NAME    = import.meta.env.VITE_BANK_NAME
                   || import.meta.env.VITE_BANK_ACCOUNT_NAME
                   || (import.meta.env as any).BANK_ACCOUNT_NAME
                   || (import.meta.env as any).BANK_NAME
-                  || 'HKD DINH CONG LINH'
+                  || 'HO KINH DOANH NGUYEN LUONG THO'
 
 // ─── Danh sách ngân hàng phổ biến (để hiện tên đẹp) ─────────────────────────
 const BANK_NAMES: Record<string, string> = {
