@@ -180,3 +180,130 @@ create policy "Allow read tuition_notifications" on tuition_notifications
 
 create policy "Allow write tuition_notifications" on tuition_notifications
   for all using (auth.role() = 'authenticated');
+
+-- ============================================================
+-- ── LMS Tables (Bổ sung cho Thi cử & Học tập) ────────────────
+-- ============================================================
+
+-- ── Exams ───────────────────────────────────────────────────
+create table if not exists exams (
+  id         uuid default uuid_generate_v4() primary key,
+  title      text not null,
+  data       jsonb,
+  created_by uuid references profiles(id) on delete set null,
+  created_at timestamptz default now()
+);
+
+-- ── Exam Rooms ──────────────────────────────────────────────
+create table if not exists exam_rooms (
+  id         uuid default uuid_generate_v4() primary key,
+  code       text unique not null,
+  exam_id    uuid references exams(id) on delete cascade,
+  class_id   uuid references classes(id) on delete set null,
+  teacher_id uuid references profiles(id) on delete set null,
+  status     text default 'waiting' check (status in ('waiting', 'active', 'closed')),
+  time_limit integer default 60,
+  settings   jsonb default '{}'::jsonb,
+  created_at timestamptz default now()
+);
+
+-- ── Exam Submissions ────────────────────────────────────────
+create table if not exists exam_submissions (
+  id                  uuid default uuid_generate_v4() primary key,
+  room_id             uuid references exam_rooms(id) on delete cascade,
+  student_id          uuid references students(id) on delete cascade,
+  status              text default 'in_progress' check (status in ('in_progress', 'submitted')),
+  answers             jsonb default '{}'::jsonb,
+  score               numeric default 0,
+  score_breakdown     jsonb default '{}'::jsonb,
+  duration            integer default 0,
+  tab_switches        integer default 0,
+  tab_switch_warnings jsonb default '[]'::jsonb,
+  submitted_at        timestamptz,
+  created_at          timestamptz default now(),
+  unique(room_id, student_id)
+);
+
+-- ── Courses ─────────────────────────────────────────────────
+create table if not exists courses (
+  id                 uuid default uuid_generate_v4() primary key,
+  title              text not null,
+  description        text,
+  teacher_id         uuid references profiles(id) on delete set null,
+  is_published       boolean default false,
+  assigned_class_ids text[] default array[]::text[],
+  created_at         timestamptz default now()
+);
+
+-- ── Chapters ────────────────────────────────────────────────
+create table if not exists chapters (
+  id          uuid default uuid_generate_v4() primary key,
+  course_id   uuid references courses(id) on delete cascade,
+  title       text not null,
+  order_index integer default 1,
+  created_at  timestamptz default now()
+);
+
+-- ── Lessons ─────────────────────────────────────────────────
+create table if not exists lessons (
+  id                    uuid default uuid_generate_v4() primary key,
+  chapter_id            uuid references chapters(id) on delete cascade,
+  title                 text not null,
+  order_index           integer default 1,
+  video_url             text,
+  pdf_list              jsonb default '[]'::jsonb,
+  pdf_url               text,
+  exam_ids              jsonb default '[]'::jsonb,
+  exam_id               text,
+  interactive_questions jsonb default '[]'::jsonb,
+  created_at            timestamptz default now()
+);
+
+-- ── Student Progress ────────────────────────────────────────
+create table if not exists student_progress (
+  student_id    uuid references students(id) on delete cascade,
+  lesson_id     uuid references lessons(id) on delete cascade,
+  is_passed     boolean default false,
+  highest_score numeric default 0,
+  created_at    timestamptz default now(),
+  primary key (student_id, lesson_id)
+);
+
+-- ── RLS for LMS Tables ──────────────────────────────────────
+alter table exams enable row level security;
+alter table exam_rooms enable row level security;
+alter table exam_submissions enable row level security;
+alter table courses enable row level security;
+alter table chapters enable row level security;
+alter table lessons enable row level security;
+alter table student_progress enable row level security;
+
+-- Policies for Exams
+create policy "Allow read exams" on exams for select using (true);
+create policy "Allow write exams" on exams for all using (auth.role() = 'authenticated');
+
+-- Policies for Exam Rooms
+create policy "Allow read exam_rooms" on exam_rooms for select using (true);
+create policy "Allow write exam_rooms" on exam_rooms for all using (auth.role() = 'authenticated');
+
+-- Policies for Exam Submissions (Học sinh ẩn danh hoặc đăng nhập đều nộp được bài)
+create policy "Allow read exam_submissions" on exam_submissions for select using (true);
+create policy "Allow insert exam_submissions" on exam_submissions for insert with check (true);
+create policy "Allow update exam_submissions" on exam_submissions for update using (true);
+
+-- Policies for Courses
+create policy "Allow read courses" on courses for select using (true);
+create policy "Allow write courses" on courses for all using (auth.role() = 'authenticated');
+
+-- Policies for Chapters
+create policy "Allow read chapters" on chapters for select using (true);
+create policy "Allow write chapters" on chapters for all using (auth.role() = 'authenticated');
+
+-- Policies for Lessons
+create policy "Allow read lessons" on lessons for select using (true);
+create policy "Allow write lessons" on lessons for all using (auth.role() = 'authenticated');
+
+-- Policies for Student Progress
+create policy "Allow read student_progress" on student_progress for select using (true);
+create policy "Allow write student_progress" on student_progress for all using (true);
+
