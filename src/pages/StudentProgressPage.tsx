@@ -302,7 +302,7 @@ export default function StudentProgressPage() {
                 <span>💡 Lời nhắn gửi từ Thầy Thọ:</span>
               </div>
               <p className="text-xs text-purple-950 leading-relaxed font-medium">
-                Kính gửi phụ huynh, sự đồng hành của gia đình là động lực lớn nhất của con. Trung tâm rất mong phụ huynh dành thêm thời gian kèm cặp, đôn đốc con học hành nhiều hơn, chăm chỉ tự giác làm bài tập đầy đủ để đạt kết quả học tập tốt nhất!
+                Kính gửi Quý phụ huynh, gia đình luôn là điểm tựa vững chắc nhất trên con đường học vấn của các con. Để giúp con đạt được những thành tích vượt trội, thầy Thọ kính mong Quý phụ huynh phối hợp chặt chẽ, sát sao nhắc nhở và hướng dẫn con tự giác hoàn thành tốt các bài tập về nhà.
               </p>
             </div>
           </div>
