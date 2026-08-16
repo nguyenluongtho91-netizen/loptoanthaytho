@@ -156,7 +156,7 @@ export default function ExamMgmt() {
 
       // Thay thế tên tác giả và ẩn lời giải
       texContent = texContent
-        .replace(/Nguyễn Hữu Phúc/g, 'Lớp toán thầy Thọ')
+        .replace(/Nguyễn Hữu Phúc/g, 'Lớp học thầy Thọ')
         .replace(/Mr\.Phuc\s+Math/g, '')
         .replace(/\\usepackage\s*\[\s*loigiai\s*\]\s*\{\s*ex_test\s*\}/g, '\\usepackage[dethi]{ex_test}')
         .replace(/\\circEX/g, '\\circled')
@@ -215,7 +215,7 @@ export default function ExamMgmt() {
 
       // Thay thế tên tác giả và ẩn lời giải
       texContent = texContent
-        .replace(/Nguyễn Hữu Phúc/g, 'Lớp toán thầy Thọ')
+        .replace(/Nguyễn Hữu Phúc/g, 'Lớp học thầy Thọ')
         .replace(/Mr\.Phuc\s+Math/g, '')
         .replace(/\\usepackage\s*\[\s*loigiai\s*\]\s*\{\s*ex_test\s*\}/g, '\\usepackage[dethi]{ex_test}')
         .replace(/\\circEX/g, '\\circled')

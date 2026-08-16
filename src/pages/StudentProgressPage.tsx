@@ -16,7 +16,7 @@ export default function StudentProgressPage() {
   const [submissions, setSubmissions] = useState<any[]>([])
   const [courseProgress, setCourseProgress] = useState<any[]>([])
   const [tuitionNotifications, setTuitionNotifications] = useState<any[]>([])
-  const [centerName]   = useState(import.meta.env.VITE_CENTER_NAME || 'LỚP TOÁN THẦY THỌ')
+  const [centerName]   = useState(import.meta.env.VITE_CENTER_NAME || 'LỚP HỌC THẦY THỌ')
   const [loading, setLoading]   = useState(true)
   const [notFound, setNotFound] = useState(false)
   const [expandedSub, setExpandedSub] = useState<number | null>(null)
@@ -299,10 +299,10 @@ export default function StudentProgressPage() {
             {/* Lời nhắn gửi phụ huynh */}
             <div className="bg-gradient-to-br from-violet-50 via-purple-50/50 to-white border border-purple-100 rounded-xl p-4 space-y-2">
               <div className="flex items-center gap-1.5 text-purple-700 font-extrabold text-xs">
-                <span>💡 Lời nhắn gửi từ Thầy Thọ:</span>
+                <span>💡 LỜI NHẮN DƯỚI BÀI TẬP VỀ NHÀ:</span>
               </div>
               <p className="text-xs text-purple-950 leading-relaxed font-medium">
-                Kính gửi Quý phụ huynh, gia đình luôn là điểm tựa vững chắc nhất trên con đường học vấn của các con. Để giúp con đạt được những thành tích vượt trội, thầy Thọ kính mong Quý phụ huynh phối hợp chặt chẽ, sát sao nhắc nhở và hướng dẫn con tự giác hoàn thành tốt các bài tập về nhà.
+                Thầy Thọ rất mong Quý Phụ huynh luôn đồng hành, nhắc nhở và khích lệ để các em tự giác học tập, hoàn thành tốt bài tập và tiến bộ mỗi ngày. Sự quan tâm của gia đình sẽ là động lực giúp các em ngày càng tự tin và đạt kết quả tốt hơn. 📚❤️
               </p>
             </div>
           </div>

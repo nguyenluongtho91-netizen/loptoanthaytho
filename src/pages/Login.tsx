@@ -48,7 +48,7 @@ export default function Login() {
             <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg backdrop-blur-sm">
               <GraduationCap className="w-9 h-9 text-white" />
             </div>
-            <h1 className="text-white font-extrabold text-2xl tracking-wide">LỚP TOÁN THẦY THỌ</h1>
+            <h1 className="text-white font-extrabold text-2xl tracking-wide">LỚP HỌC THẦY THỌ</h1>
             <p className="text-white/75 text-sm mt-1 uppercase tracking-widest text-xs font-semibold">Hệ thống quản lý trung tâm</p>
           </div>
 
