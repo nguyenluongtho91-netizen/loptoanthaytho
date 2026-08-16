@@ -534,16 +534,22 @@ export default function Students() {
   const [selectedClassId, setSelectedClassId] = useState<string | 'unassigned' | null>(null)
   const [hasInitGrade, setHasInitGrade] = useState(false)
 
-  const displayGrades = [6, 7, 8, 9]
+  const displayGrades = [6, 7, 8, 9, 10, 11, 12]
 
   const getClassGrade = (cls: any) => {
     const gradeStr = (cls.grade || '').toLowerCase().trim()
+    if (gradeStr.includes('12') || gradeStr === '12') return 12
+    if (gradeStr.includes('11') || gradeStr === '11') return 11
+    if (gradeStr.includes('10') || gradeStr === '10') return 10
     if (gradeStr.includes('6') || gradeStr === '6') return 6
     if (gradeStr.includes('7') || gradeStr === '7') return 7
     if (gradeStr.includes('8') || gradeStr === '8') return 8
     if (gradeStr.includes('9') || gradeStr === '9') return 9
 
     const className = ((cls.class_name || cls.name || '') as string).toLowerCase()
+    if (className.includes('lớp 12') || className.includes('khối 12') || className.includes('toán 12') || /\b12\b/.test(className)) return 12
+    if (className.includes('lớp 11') || className.includes('khối 11') || className.includes('toán 11') || /\b11\b/.test(className)) return 11
+    if (className.includes('lớp 10') || className.includes('khối 10') || className.includes('toán 10') || /\b10\b/.test(className)) return 10
     if (className.includes('lớp 6') || className.includes('khối 6') || className.includes('toán 6') || /\b6\b/.test(className)) return 6
     if (className.includes('lớp 7') || className.includes('khối 7') || className.includes('toán 7') || /\b7\b/.test(className)) return 7
     if (className.includes('lớp 8') || className.includes('khối 8') || className.includes('toán 8') || /\b8\b/.test(className)) return 8
@@ -563,12 +569,18 @@ export default function Students() {
     }
 
     const gradeStr = (s.grade || '').toLowerCase().trim()
+    if (gradeStr.includes('12') || gradeStr === '12') return 12
+    if (gradeStr.includes('11') || gradeStr === '11') return 11
+    if (gradeStr.includes('10') || gradeStr === '10') return 10
     if (gradeStr.includes('6') || gradeStr === '6') return 6
     if (gradeStr.includes('7') || gradeStr === '7') return 7
     if (gradeStr.includes('8') || gradeStr === '8') return 8
     if (gradeStr.includes('9') || gradeStr === '9') return 9
 
     const schoolOrGrade = ((s.school || '') as string).toLowerCase()
+    if (schoolOrGrade.includes('lớp 12') || schoolOrGrade.includes('khối 12') || schoolOrGrade.includes('toán 12') || /\b12\b/.test(schoolOrGrade)) return 12
+    if (schoolOrGrade.includes('lớp 11') || schoolOrGrade.includes('khối 11') || schoolOrGrade.includes('toán 11') || /\b11\b/.test(schoolOrGrade)) return 11
+    if (schoolOrGrade.includes('lớp 10') || schoolOrGrade.includes('khối 10') || schoolOrGrade.includes('toán 10') || /\b10\b/.test(schoolOrGrade)) return 10
     if (schoolOrGrade.includes('lớp 6') || schoolOrGrade.includes('khối 6') || schoolOrGrade.includes('toán 6') || /\b6\b/.test(schoolOrGrade)) return 6
     if (schoolOrGrade.includes('lớp 7') || schoolOrGrade.includes('khối 7') || schoolOrGrade.includes('toán 7') || /\b7\b/.test(schoolOrGrade)) return 7
     if (schoolOrGrade.includes('lớp 8') || schoolOrGrade.includes('khối 8') || schoolOrGrade.includes('toán 8') || /\b8\b/.test(schoolOrGrade)) return 8
@@ -689,7 +701,7 @@ export default function Students() {
   // Tự động chọn Khối đầu tiên có học sinh
   useEffect(() => {
     if (myStudents.length > 0 && !hasInitGrade) {
-      const gradesWithStudents = [6, 7, 8, 9].filter(g => myStudents.some(s => getStudentGrade(s) === g))
+      const gradesWithStudents = displayGrades.filter(g => myStudents.some(s => getStudentGrade(s) === g))
       
       const saved = sessionStorage.getItem('students_active_grade')
       if (saved) {

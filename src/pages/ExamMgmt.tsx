@@ -491,6 +491,9 @@ export default function ExamMgmt() {
 
   const getExamGrade = (title: string) => {
     const t = title.toLowerCase()
+    if (t.includes('lớp 12') || t.includes('khối 12') || t.includes('toán 12') || t.includes('khối mười hai') || /\b(khối\s+)?12\b/.test(t)) return 12
+    if (t.includes('lớp 11') || t.includes('khối 11') || t.includes('toán 11') || t.includes('khối mười một') || /\b(khối\s+)?11\b/.test(t)) return 11
+    if (t.includes('lớp 10') || t.includes('khối 10') || t.includes('toán 10') || t.includes('khối mười') || /\b(khối\s+)?10\b/.test(t)) return 10
     if (t.includes('lớp 6') || t.includes('khối 6') || t.includes('toán 6') || t.includes('khối sáu') || /\b(khối\s+)?6\b/.test(t)) return 6
     if (t.includes('lớp 7') || t.includes('khối 7') || t.includes('toán 7') || t.includes('khối bảy') || /\b(khối\s+)?7\b/.test(t)) return 7
     if (t.includes('lớp 8') || t.includes('khối 8') || t.includes('toán 8') || t.includes('khối tám') || /\b(khối\s+)?8\b/.test(t)) return 8
@@ -498,13 +501,16 @@ export default function ExamMgmt() {
     return null
   }
 
-  const grades = [6, 7, 8, 9]
+  const grades = [6, 7, 8, 9, 10, 11, 12]
 
   const examsByGrade = {
     6: exams.filter(e => getExamGrade(e.title) === 6),
     7: exams.filter(e => getExamGrade(e.title) === 7),
     8: exams.filter(e => getExamGrade(e.title) === 8),
     9: exams.filter(e => getExamGrade(e.title) === 9),
+    10: exams.filter(e => getExamGrade(e.title) === 10),
+    11: exams.filter(e => getExamGrade(e.title) === 11),
+    12: exams.filter(e => getExamGrade(e.title) === 12),
     others: exams.filter(e => {
       const g = getExamGrade(e.title)
       return g === null
@@ -543,14 +549,17 @@ export default function ExamMgmt() {
       {/* 4 Cột Khối Lớp */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {grades.map(grade => {
-          const list = examsByGrade[grade as 6 | 7 | 8 | 9]
+          const list = examsByGrade[grade as 6 | 7 | 8 | 9 | 10 | 11 | 12]
           // Màu sắc tương ứng từng khối lớp
           const theme = {
             6: { border: 'border-blue-500', text: 'text-blue-700', badge: 'bg-blue-100 text-blue-800' },
             7: { border: 'border-emerald-500', text: 'text-emerald-700', badge: 'bg-emerald-100 text-emerald-800' },
             8: { border: 'border-orange-500', text: 'text-orange-700', badge: 'bg-orange-100 text-orange-800' },
             9: { border: 'border-purple-500', text: 'text-purple-700', badge: 'bg-purple-100 text-purple-800' },
-          }[grade as 6 | 7 | 8 | 9]
+            10: { border: 'border-indigo-500', text: 'text-indigo-700', badge: 'bg-indigo-100 text-indigo-800' },
+            11: { border: 'border-pink-500', text: 'text-pink-700', badge: 'bg-pink-100 text-pink-800' },
+            12: { border: 'border-rose-500', text: 'text-rose-700', badge: 'bg-rose-100 text-rose-800' },
+          }[grade as 6 | 7 | 8 | 9 | 10 | 11 | 12]
 
           return (
             <div key={grade} className={`flex flex-col rounded-2xl border-t-4 ${theme.border} bg-white shadow-sm overflow-hidden min-h-[400px]`}>

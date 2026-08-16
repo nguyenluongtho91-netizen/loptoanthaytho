@@ -25,6 +25,9 @@ const sortLessons = (lessons: any[]) => {
 
 const getCourseGrade = (title: string) => {
   const t = (title || '').toLowerCase()
+  if (t.includes('lớp 12') || t.includes('khối 12') || t.includes('toán 12') || t.includes('khối mười hai') || /\b(khối\s+)?12\b/.test(t)) return 12
+  if (t.includes('lớp 11') || t.includes('khối 11') || t.includes('toán 11') || t.includes('khối mười một') || /\b(khối\s+)?11\b/.test(t)) return 11
+  if (t.includes('lớp 10') || t.includes('khối 10') || t.includes('toán 10') || t.includes('khối mười') || /\b(khối\s+)?10\b/.test(t)) return 10
   if (t.includes('lớp 6') || t.includes('khối 6') || t.includes('toán 6') || t.includes('khối sáu') || /\b(khối\s+)?6\b/.test(t)) return 6
   if (t.includes('lớp 7') || t.includes('khối 7') || t.includes('toán 7') || t.includes('khối bảy') || /\b(khối\s+)?7\b/.test(t)) return 7
   if (t.includes('lớp 8') || t.includes('khối 8') || t.includes('toán 8') || t.includes('khối tám') || /\b(khối\s+)?8\b/.test(t)) return 8
@@ -75,7 +78,7 @@ export default function CourseMgmt() {
 
   useEffect(() => {
     if (courses && courses.length > 0) {
-      const availableGrades = [9, 8, 7, 6].filter(g => 
+      const availableGrades = [12, 11, 10, 9, 8, 7, 6].filter(g => 
         courses.some((c: any) => getCourseGrade(c.title) === g)
       )
       
@@ -268,7 +271,7 @@ export default function CourseMgmt() {
 
       {/* Grade Selector horizontal list */}
       <div className="flex flex-wrap gap-3">
-        {[6, 7, 8, 9, 'others'].map((grade) => {
+        {[6, 7, 8, 9, 10, 11, 12, 'others'].map((grade) => {
           const isOther = grade === 'others'
           const label = isOther ? 'Khác' : `Khối ${grade}`
           const isActive = activeGrade === grade
