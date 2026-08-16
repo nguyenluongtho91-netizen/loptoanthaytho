@@ -844,7 +844,7 @@ export default function Students() {
             </span>
           </button>
 
-          {[6, 7, 8, 9, ...(hasOtherStudents ? ['others'] : [])].map((col) => {
+          {[...displayGrades, ...(hasOtherStudents ? ['others'] : [])].map((col) => {
             const isOther = col === 'others'
             const gradeStudents = myStudents.filter(s => isOther ? (getStudentGrade(s) === null || !displayGrades.includes(getStudentGrade(s)!)) : getStudentGrade(s) === col)
             const title = isOther ? 'Khác' : `Khối ${col}`

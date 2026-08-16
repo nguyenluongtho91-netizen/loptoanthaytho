@@ -187,7 +187,7 @@ export default function ExamRoomsMgmt() {
 
   useEffect(() => {
     if (rooms.length > 0 && !rooms.some(r => getRoomGrade(r) === activeGrade)) {
-      const gradesWithRooms = [6, 7, 8, 9].filter(g => rooms.some(r => getRoomGrade(r) === g))
+      const gradesWithRooms = displayGrades.filter(g => rooms.some(r => getRoomGrade(r) === g))
       if (gradesWithRooms.length > 0) {
         setActiveGrade(gradesWithRooms[0])
       } else if (hasOtherRooms) {
@@ -350,7 +350,7 @@ export default function ExamRoomsMgmt() {
         <div className="flex flex-col lg:flex-row gap-6">
           {/* LEFT SIDEBAR: BUTTONS (25% area) */}
           <div className="w-full lg:w-1/4 flex flex-row lg:flex-col gap-2.5 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0 shrink-0">
-            {[6, 7, 8, 9, ...(hasOtherRooms ? ['others'] : [])].map((col) => {
+            {[...displayGrades, ...(hasOtherRooms ? ['others'] : [])].map((col) => {
               const isOther = col === 'others'
               const gradeRooms = rooms.filter(r => isOther ? (getRoomGrade(r) === null || !displayGrades.includes(getRoomGrade(r)!)) : getRoomGrade(r) === col)
               const title = isOther ? 'Khác' : `Khối ${col}`
