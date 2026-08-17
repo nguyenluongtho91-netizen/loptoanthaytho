@@ -6,7 +6,7 @@
   * { box-sizing: border-box; }
   body {
     @apply font-sans text-gray-800 antialiased;
-    background: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 50%, #5eead4 100%);
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 50%, #fecaca 100%);
     min-height: 100vh;
   }
   ::-webkit-scrollbar { width: 6px; height: 6px; }

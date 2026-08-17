@@ -69,7 +69,7 @@ export default function Layout() {
   const displayChar = displayName.charAt(0).toUpperCase()
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-red-50/50 flex">
       <aside className="w-64 bg-teal-700 text-white flex flex-col shadow-xl z-20 hidden md:flex shrink-0 h-screen sticky top-0">
         <div className="h-16 flex items-center gap-3 px-6 border-b border-teal-600/50 bg-teal-800/30 shrink-0">
           <GraduationCap className="w-8 h-8 text-teal-100" />
@@ -134,7 +134,7 @@ export default function Layout() {
         </div>
       </aside>
 
-      <main className="flex-1 min-w-0 bg-gray-50/50 min-h-screen">
+      <main className="flex-1 min-w-0 bg-red-50/20 min-h-screen">
         <div className="p-4 md:p-6 lg:p-8">
           <Outlet />
         </div>
