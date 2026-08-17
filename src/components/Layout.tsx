@@ -69,13 +69,13 @@ export default function Layout() {
   const displayChar = displayName.charAt(0).toUpperCase()
 
   return (
-    <div className="min-h-screen bg-red-50/50 flex">
-      <aside className="w-64 bg-teal-700 text-white flex flex-col shadow-xl z-20 hidden md:flex shrink-0 h-screen sticky top-0">
-        <div className="h-16 flex items-center gap-3 px-6 border-b border-teal-600/50 bg-teal-800/30 shrink-0">
-          <GraduationCap className="w-8 h-8 text-teal-100" />
+    <div className="min-h-screen bg-gray-50 flex">
+      <aside className="w-64 bg-red-800 text-white flex flex-col shadow-xl z-20 hidden md:flex shrink-0 h-screen sticky top-0">
+        <div className="h-16 flex items-center gap-3 px-6 border-b border-red-700/50 bg-red-900/30 shrink-0">
+          <GraduationCap className="w-8 h-8 text-red-100" />
           <div>
             <h1 className="font-bold text-sm leading-tight uppercase tracking-wider">LỚP HỌC THẦY THỌ</h1>
-            <p className="text-[9px] text-teal-200 uppercase tracking-widest mt-0.5">Hệ thống Quản lý</p>
+            <p className="text-[9px] text-red-200 uppercase tracking-widest mt-0.5">Hệ thống Quản lý</p>
           </div>
         </div>
 
@@ -84,7 +84,7 @@ export default function Layout() {
             if (group.adminOnly && !isAdmin()) return null
             return (
               <div key={idx} className="mb-6">
-                <h3 className="px-3 text-[10px] font-extrabold text-teal-300/80 uppercase tracking-widest mb-2 mt-2">
+                <h3 className="px-3 text-[10px] font-extrabold text-red-300/80 uppercase tracking-widest mb-2 mt-2">
                   {group.title}
                 </h3>
                 <div className="space-y-1">
@@ -99,11 +99,11 @@ export default function Layout() {
                         to={item.path}
                         className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 ${
                           isActive
-                            ? 'bg-white text-teal-700 font-bold shadow-md transform scale-[1.02]'
-                            : 'text-teal-50 hover:bg-teal-600 hover:text-white hover:translate-x-1'
+                            ? 'bg-white text-red-700 font-bold shadow-md transform scale-[1.02]'
+                            : 'text-red-50 hover:bg-red-700 hover:text-white hover:translate-x-1'
                         }`}
                       >
-                        <Icon className={`w-5 h-5 ${isActive ? 'text-teal-600' : 'opacity-80'}`} />
+                        <Icon className={`w-5 h-5 ${isActive ? 'text-red-600' : 'opacity-80'}`} />
                         <span className="text-sm">{item.label}</span>
                       </Link>
                     )
@@ -114,19 +114,19 @@ export default function Layout() {
           })}
         </div>
 
-        <div className="p-4 border-t border-teal-600/50 bg-teal-800/30 shrink-0">
+        <div className="p-4 border-t border-red-700/50 bg-red-900/30 shrink-0">
           <div className="flex items-center gap-3 px-2 mb-4">
-            <div className="w-10 h-10 rounded-full bg-teal-600 border-2 border-teal-400 flex items-center justify-center font-bold">
+            <div className="w-10 h-10 rounded-full bg-red-700 border-2 border-red-500 flex items-center justify-center font-bold">
               {displayChar}
             </div>
             <div className="flex-1 overflow-hidden">
               <p className="text-sm font-bold truncate text-white">{displayName}</p>
-              <p className="text-[10px] text-teal-200 uppercase tracking-widest">{user?.role || 'TEACHER'}</p>
+              <p className="text-[10px] text-red-200 uppercase tracking-widest">{user?.role || 'TEACHER'}</p>
             </div>
           </div>
           <button
             onClick={handleSignOut}
-            className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-sm font-bold text-teal-100 bg-teal-800/50 hover:bg-red-500 hover:text-white transition-all"
+            className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-sm font-bold text-red-100 bg-red-900/50 hover:bg-red-600 hover:text-white transition-all"
           >
             <LogOut className="w-4 h-4" />
             Đăng xuất
@@ -134,7 +134,7 @@ export default function Layout() {
         </div>
       </aside>
 
-      <main className="flex-1 min-w-0 bg-red-50/20 min-h-screen">
+      <main className="flex-1 min-w-0 bg-gray-50/50 min-h-screen">
         <div className="p-4 md:p-6 lg:p-8">
           <Outlet />
         </div>
