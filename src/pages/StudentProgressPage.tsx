@@ -302,7 +302,7 @@ export default function StudentProgressPage() {
                 <span>💌 THẦY THỌ GỬI LỜI NHẮN:</span>
               </div>
               <p className="text-xs text-purple-950 leading-relaxed font-medium">
-                Thầy Thọ rất mong Quý Phụ huynh luôn đồng hành, nhắc nhở và khích lệ để các em tự giác học tập, hoàn thành tốt bài tập và tiến bộ mỗi ngày. Sự quan tâm của gia đình sẽ là động lực giúp các em ngày càng tự tin và đạt kết quả tốt hơn. 📚❤️
+                Thầy Thọ rất mong Quý Phụ huynh luôn đồng hành, nhắc nhở và khích lệ để các cháu tự giác học tập, hoàn thành tốt bài tập và tiến bộ mỗi ngày. Sự quan tâm của gia đình sẽ là động lực giúp các cháu ngày càng tự tin và đạt kết quả tốt hơn. 📚❤️
               </p>
             </div>
           </div>
