@@ -32,10 +32,10 @@ export async function exportExamRoomToExcel(options: ExportRoomOptions | string)
   let notSubmittedStudents = typeof options === 'object' ? options.notSubmittedStudents : null
 
   // 1. Fetch missing room and exam data if needed
-  if (!room || !exam) {
+  if (!room || !exam || !exam.data) {
     const { data: roomData, error: roomErr } = await supabase
       .from('exam_rooms')
-      .select('*, exams(id, title, data), classes(id, name, class_name)')
+      .select('*, exams(id, title, data), classes(id, class_name)')
       .eq('id', roomId)
       .single()
 
@@ -84,7 +84,7 @@ export async function exportExamRoomToExcel(options: ExportRoomOptions | string)
   }
 
   const examQuestions = exam?.data?.questions || []
-  const className = room.classes?.class_name || room.classes?.name || 'Tất cả'
+  const className = room.classes?.class_name || 'Tất cả'
   const examTitle = exam?.title || 'Đề thi'
   const timeLimit = room.time_limit || 45
   const roomCode = room.code || '—'
