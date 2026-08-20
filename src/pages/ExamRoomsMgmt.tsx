@@ -1,9 +1,10 @@
 import { useEffect, useState, useRef } from 'react'
-import { MonitorPlay, Plus, Trash2, KeyRound, BarChart3, RefreshCw, Settings } from 'lucide-react'
+import { MonitorPlay, Plus, Trash2, KeyRound, BarChart3, RefreshCw, Settings, FileSpreadsheet } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useExamRoomStore } from '@/store/examRoomStore'
 import { useExamStore } from '@/store/examStore'
 import { useDataStore } from '@/store/dataStore'
+import { exportExamRoomToExcel } from '@/services/examExportService'
 import Modal from '@/components/Modal'
 import toast from 'react-hot-toast'
 
@@ -33,6 +34,7 @@ export default function ExamRoomsMgmt() {
   const [saving, setSaving] = useState(false)
   const [modalGrade, setModalGrade] = useState<number | ''>('')
   const [editingRoomId, setEditingRoomId] = useState<string | null>(null)
+  const [exportingRoomId, setExportingRoomId] = useState<string | null>(null)
   
   // ✅ Đã thêm settings vào Form state
   const [form, setForm] = useState<{
@@ -516,6 +518,30 @@ export default function ExamRoomsMgmt() {
                         </select>
                         
                         <div className="flex gap-1">
+                          <button 
+                            onClick={async (e) => {
+                              e.stopPropagation()
+                              try {
+                                setExportingRoomId(room.id)
+                                toast.loading('Đang chuẩn bị file Excel...', { id: `export-room-${room.id}` })
+                                await exportExamRoomToExcel({ roomId: room.id, room })
+                                toast.success('Xuất file Excel thành công!', { id: `export-room-${room.id}` })
+                              } catch (err: any) {
+                                toast.error('Lỗi khi xuất file: ' + (err?.message || err), { id: `export-room-${room.id}` })
+                              } finally {
+                                setExportingRoomId(null)
+                              }
+                            }}
+                            disabled={exportingRoomId === room.id}
+                            className="p-2 text-emerald-600 hover:bg-emerald-50 hover:text-emerald-700 rounded-xl border border-transparent hover:border-emerald-100 transition-all disabled:opacity-50"
+                            title="Xuất file Excel bảng điểm"
+                          >
+                            {exportingRoomId === room.id ? (
+                              <RefreshCw className="w-5 h-5 animate-spin text-emerald-600" />
+                            ) : (
+                              <FileSpreadsheet className="w-5 h-5" />
+                            )}
+                          </button>
                           <button 
                             onClick={() => {
                               sessionStorage.setItem('exam_rooms_active_grade', activeGrade.toString())

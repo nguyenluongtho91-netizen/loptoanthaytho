@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { supabase } from '@/lib/supabase'
-import { ChevronLeft, BrainCircuit, Eye, AlertTriangle } from 'lucide-react'
+import { ChevronLeft, BrainCircuit, Eye, AlertTriangle, FileSpreadsheet } from 'lucide-react'
+import { exportExamRoomToExcel } from '@/services/examExportService'
 import Modal from '@/components/Modal'
 import EssayGraderPanel from '@/components/EssayGraderPanel'
 import SubmissionDetailView from '@/components/SubmissionDetailView'
@@ -173,12 +174,35 @@ export default function ExamResultsPage() {
           </div>
         </div>
 
-        <button
-          onClick={() => setShowEssayGrader(true)}
-          className="btn-teal bg-violet-600 hover:bg-violet-700 flex items-center gap-2 w-max"
-        >
-          <BrainCircuit className="w-4 h-4" /> Chấm Tự luận AI
-        </button>
+        <div className="flex items-center gap-2.5 flex-wrap">
+          <button
+            onClick={async () => {
+              try {
+                toast.loading('Đang xuất file Excel...', { id: 'export-results' })
+                await exportExamRoomToExcel({
+                  roomId: room.id,
+                  room,
+                  exam,
+                  submissions,
+                  notSubmittedStudents
+                })
+                toast.success('Xuất file Excel thành công!', { id: 'export-results' })
+              } catch (err: any) {
+                toast.error('Lỗi khi xuất file: ' + (err?.message || err), { id: 'export-results' })
+              }
+            }}
+            className="btn-teal bg-emerald-600 hover:bg-emerald-700 flex items-center gap-2 w-max shadow-sm"
+          >
+            <FileSpreadsheet className="w-4 h-4" /> Xuất file Excel
+          </button>
+
+          <button
+            onClick={() => setShowEssayGrader(true)}
+            className="btn-teal bg-violet-600 hover:bg-violet-700 flex items-center gap-2 w-max"
+          >
+            <BrainCircuit className="w-4 h-4" /> Chấm Tự luận AI
+          </button>
+        </div>
       </div>
 
       {/* Tab Selector */}
