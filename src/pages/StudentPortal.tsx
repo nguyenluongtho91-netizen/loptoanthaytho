@@ -472,7 +472,6 @@ export default function StudentPortal() {
                 <GraduationCap className="w-9 h-9 text-white" />
               </div>
               <h1 className="font-extrabold text-2xl tracking-wide uppercase">LỚP HỌC THẦY THỌ</h1>
-              <h2 className="text-white/90 font-bold text-lg mt-1">Bài Tập Về Nhà</h2>
             </div>
 
             <form onSubmit={handleLogin} className="p-8 space-y-5">
