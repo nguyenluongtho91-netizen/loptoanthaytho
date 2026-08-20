@@ -50,7 +50,7 @@ function Spinner() {
         <div className="absolute inset-0 border-4 border-teal-100 rounded-full"></div>
         <div className="absolute inset-0 border-4 border-teal-600 rounded-full border-t-transparent animate-spin"></div>
       </div>
-      <p className="text-teal-700 text-sm font-bold tracking-widest animate-pulse uppercase">EduCenter System</p>
+      <p className="text-teal-700 text-sm font-bold tracking-widest animate-pulse uppercase">Lớp Học Thầy Thọ</p>
     </div>
   )
 }
