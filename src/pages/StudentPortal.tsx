@@ -473,9 +473,6 @@ export default function StudentPortal() {
               </div>
               <h1 className="font-extrabold text-2xl tracking-wide uppercase">LỚP HỌC THẦY THỌ</h1>
               <h2 className="text-white/90 font-bold text-lg mt-1">Bài Tập Về Nhà</h2>
-              <p className="text-white/75 text-xs mt-2 italic max-w-xs mx-auto leading-relaxed">
-                Sau mỗi buổi học thầy sẽ giao 2 đề thi, các học trò cố gắng làm hết 2 đề thi này
-              </p>
             </div>
 
             <form onSubmit={handleLogin} className="p-8 space-y-5">
